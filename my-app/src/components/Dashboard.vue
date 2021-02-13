@@ -4,58 +4,58 @@
     <div class="container mrgnbtm">
           <div class="row">
             <div class="col-md-8">
-                <CreateUser @createUser="userCreate($event)" />
+                <CreateForm @createForm="formCreate($event)" />
             </div>
             <div class="col-md-4">
-                <DisplayBoard :numberOfUsers="numberOfUsers" @getAllUsers="getAllUsers()" />
+                <DisplayBoard :numberOfForms="numberOfForms" @getAllForms="getAllForms()" />
             </div>
           </div>
     </div>
     <div class="row mrgnbtm">
-        <Users v-if="users.length > 0" :users="users" />
+        <Forms v-if="forms.length > 0" :forms="forms" />
     </div>
   </div>
 </template>
 
 <script>
 import Header from './Header.vue'
-import CreateUser from './CreateUser.vue'
+import CreateForm from './CreateForm.vue'
 import DisplayBoard from './DisplayBoard.vue'
-import Users from './Users.vue'
-import { getAllUsers, createUser } from '../services/UserService'
+import Forms from './Forms.vue'
+import { getAllForms, createForm } from '../services/FormService'
 
 export default {
   name: 'Dashboard',
   components: {
     Header,
-    CreateUser,
+    CreateForm,
     DisplayBoard,
-    Users
+    Forms
   },
   data() {
       return {
-          users: [],
-          numberOfUsers: 0
+          forms: [],
+          numberOfForms: 0
       }
   },
   methods: {
-    getAllUsers() {
-      getAllUsers().then(response => {
+    getAllForms() {
+      getAllForms().then(response => {
         console.log(response)
-        this.users = response
-        this.numberOfUsers = this.users.length
+        this.forms = response
+        this.numberOfForms = this.forms.length
       })
     },
-    userCreate(data) {
+    formCreate(data) {
       console.log('data:::', data)
-      createUser(data).then(response => {
+      createForm(data).then(response => {
         console.log(response);
-        this.getAllUsers();
+        this.getAllForms();
       });
     }
   },
   mounted () {
-    this.getAllUsers();
+    this.getAllForms();
   }
 }
 </script>

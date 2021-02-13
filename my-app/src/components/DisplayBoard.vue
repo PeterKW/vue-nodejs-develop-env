@@ -1,11 +1,11 @@
 <template>
     <div class="display-board">
-        <h4>Users Created</h4>
+        <h4>Forms Created</h4>
         <div class="number">
-        {{numberOfUsers}}
+        {{numberOfForms}}
         </div>
         <div class="btn">
-            <button @click='getAllUsers()' type="button" class="btn btn-warning">Get all Users</button>
+            <button @click='getAllForms()' type="button" class="btn btn-warning">Get all Forms</button>
         </div>
     </div>
 </template>
@@ -13,10 +13,10 @@
 <script>
     export default {
         name: 'DisplayBoard',
-        props: ['numberOfUsers'],
+        props: ['numberOfForms'],
         methods: {
-            getAllUsers() {
-                this.$emit('getAllUsers')
+            getAllForms() {
+                this.$emit('getAllForms')
             }
         }
     }
