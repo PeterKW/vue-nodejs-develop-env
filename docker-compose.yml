@@ -16,7 +16,7 @@ services:
       context: ./my-app
       dockerfile: Dockerfile-dev
     ports:
-      - "8080:8080"
+      - "3030:3030"
     container_name: vue-ui
     volumes:
        - ./my-app:/usr/src/app/my-app
