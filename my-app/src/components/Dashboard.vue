@@ -13,6 +13,7 @@
     </div>
     <div class="row mrgnbtm">
         <Forms v-if="forms.length > 0" :forms="forms" />
+        <Pictures v-if="pictures.length > 0" :pictures="pictures" />  
     </div>
   </div>
 </template>
@@ -22,7 +23,9 @@ import Header from './Header.vue'
 import CreateForm from './CreateForm.vue'
 import DisplayBoard from './DisplayBoard.vue'
 import Forms from './Forms.vue'
+import Pictures from './Pictures.vue'
 import { getAllForms, createForm } from '../services/FormService'
+import { getAllPictures } from '../services/PicturesService'
 
 export default {
   name: 'Dashboard',
@@ -30,12 +33,14 @@ export default {
     Header,
     CreateForm,
     DisplayBoard,
-    Forms
+    Forms,
+    Pictures
   },
   data() {
       return {
           forms: [],
-          numberOfForms: 0
+          numberOfForms: 0,
+          pictures: []
       }
   },
   methods: {
@@ -52,10 +57,17 @@ export default {
         console.log(response);
         this.getAllForms();
       });
+    },
+    getAllPictures() {
+      getAllPictures().then(response => {
+        console.log(response)
+        this.pictures = response
+      })
     }
   },
   mounted () {
     this.getAllForms();
+    this.getAllPictures();
   }
 }
 </script>
