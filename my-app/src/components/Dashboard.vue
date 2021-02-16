@@ -14,6 +14,7 @@
     <div class="row mrgnbtm">
         <Forms v-if="forms.length > 0" :forms="forms" />
         <Pictures v-if="pictures.length > 0" :pictures="pictures" />  
+        <Sounds :sounds="sounds" />  
     </div>
   </div>
 </template>
@@ -24,8 +25,10 @@ import CreateForm from './CreateForm.vue'
 import DisplayBoard from './DisplayBoard.vue'
 import Forms from './Forms.vue'
 import Pictures from './Pictures.vue'
+import Sounds from './Sounds.vue'
 import { getAllForms, createForm } from '../services/FormService'
 import { getAllPictures } from '../services/PicturesService'
+import { getAllSounds } from '../services/SoundsService'
 
 export default {
   name: 'Dashboard',
@@ -34,13 +37,15 @@ export default {
     CreateForm,
     DisplayBoard,
     Forms,
-    Pictures
+    Pictures,
+    Sounds
   },
   data() {
       return {
           forms: [],
           numberOfForms: 0,
-          pictures: []
+          pictures: [],
+          sounds: []
       }
   },
   methods: {
@@ -62,12 +67,19 @@ export default {
       getAllPictures().then(response => {
         console.log(response)
         this.pictures = response
-      })
+      });
+    },
+    getAllSounds() {
+      getAllSounds().then(response => {
+        console.log(response)
+        this.sounds = response
+      });
     }
   },
   mounted () {
     this.getAllForms();
     this.getAllPictures();
+    this.getAllSounds();
   }
 }
 </script>

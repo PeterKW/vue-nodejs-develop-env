@@ -15,6 +15,7 @@ const forms = [];
 
 const questions = []; //ID | 
 const pictures = [];
+const sounds = [];
 
 //https://attacomsian.com/blog/nodejs-list-directory-files
 const fs = require('fs');
@@ -22,6 +23,7 @@ const fs = require('fs');
 // directory path
 //var pathname = url.parse(url).pathname; // pathname = '/MyApp'
 const picturesdir = 'Pictures';
+const soundsdir = 'Sounds';
 
 // list all files in the directory
 try {
@@ -42,6 +44,26 @@ try {
     console.log(err);
 }
 
+// list all sounds files in the directory
+try {
+  const files = fs.readdirSync(soundsdir);
+
+  // files object contains all files names
+  // log them on console
+  files.forEach(file => {
+    if (file.endsWith(".mp3")){
+      sounds.push(soundsdir+'/'+file)
+    }
+  });
+
+  //Debug output to show sounds paths have been stored correctly
+  sounds.forEach( sound => {
+    console.log(sound);
+  })
+
+} catch (err) {
+  console.log(err);
+}
 app.use(bodyParser.json());
 app.use(express.static(process.cwd()+ '/my-app/build'));
 
@@ -53,6 +75,11 @@ app.get('/api/forms', (req, res) => {
 app.get('/api/pictures', (req, res) => {
   console.log('pictures get called!!!!!!!');
   res.json(pictures);
+});
+
+app.get('/api/sounds', (req, res) => {
+  console.log('sounds got called!!!!!!!');
+  res.json(sounds);
 });
 
 app.post('/api/form', (req, res) => {
