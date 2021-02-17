@@ -4,15 +4,15 @@
     <div class="container mrgnbtm">
           <div class="row">
             <div class="col-md-8">
-                <CreateForm @createForm="formCreate($event)" />
+                <CreateSurvey @createSurvey="surveyCreate($event)" />
             </div>
             <div class="col-md-4">
-                <DisplayBoard :numberOfForms="numberOfForms" @getAllForms="getAllForms()" />
+                <DisplayBoard :numberOfSurveys="numberOfSurveys" @getAllSurveys="getAllSurveys()" />
             </div>
           </div>
     </div>
     <div class="row mrgnbtm">
-        <Forms v-if="forms.length > 0" :forms="forms" />
+        <Surveys v-if="surveys.length > 0" :surveys="surveys" />
         <Pictures v-if="pictures.length > 0" :pictures="pictures" />  
         <Sounds v-if="sounds.length > 0" :sounds="sounds" />  
     </div>
@@ -21,12 +21,12 @@
 
 <script>
 import Header from './Header.vue'
-import CreateForm from './CreateForm.vue'
+import CreateSurvey from './CreateSurvey.vue'
 import DisplayBoard from './DisplayBoard.vue'
-import Forms from './Forms.vue'
+import Surveys from './Surveys.vue'
 import Pictures from './Pictures.vue'
 import Sounds from './Sounds.vue'
-import { getAllForms, createForm } from '../services/FormService'
+import { getAllSurveys, createSurvey } from '../services/SurveysService'
 import { getAllPictures } from '../services/PicturesService'
 import { getAllSounds } from '../services/SoundsService'
 
@@ -34,38 +34,38 @@ export default {
   name: 'Dashboard',
   components: {
     Header,
-    CreateForm,
+    CreateSurvey,
     DisplayBoard,
-    Forms,
+    Surveys,
     Pictures,
     Sounds
   },
   data() {
       return {
-          forms: [],
-          numberOfForms: 0,
+          surveys: [],
+          numberOfSurveys: 0,
           pictures: [],
           sounds: []
       }
   },
   methods: {
-    getAllForms() {
-      getAllForms().then(response => {
+    getAllSurveys() {
+      getAllSurveys().then(response => {
         console.log(response)
-        if (this.numberOfForms == this.forms.length){
-          this.forms = {};
-          this.numberOfForms = response.length
+        if (this.numberOfSurveys == this.surveys.length){
+          this.surveys = {};
+          this.numberOfSurveys = response.length
         }else{
-          this.forms = response
-          this.numberOfForms = this.forms.length
+          this.surveys = response
+          this.numberOfSurveys = this.surveys.length
         }
       })
     },
-    formCreate(data) {
-      console.log('data:::', data)
-      createForm(data).then(response => {
+    surveyCreate(data) {
+      console.log('surveyCreate data:::', data)
+      createSurvey(data).then(response => {
         console.log(response);
-        this.getAllForms();
+        this.getAllSurveys();
       });
     },
     getAllPictures() {
@@ -82,7 +82,7 @@ export default {
     }
   },
   mounted () {
-    this.getAllForms();
+    this.getAllSurveys();
     this.getAllPictures();
     this.getAllSounds();
   }

@@ -9,7 +9,7 @@ const app = express(),
       port = 3080;
 
 // place holder for the data
-const forms = [];
+const surveys = [];
 //https://github.com/simonlast/node-persist/blob/master/examples/counter/counter.js
 //const forms2 = [];
 
@@ -67,9 +67,10 @@ try {
 app.use(bodyParser.json());
 app.use(express.static(process.cwd()+ '/my-app/build'));
 
-app.get('/api/forms', (req, res) => {
-  console.log('api/forms called!!!!!!!');
-  res.json(forms);
+app.get('/api/surveys', (req, res) => {
+  console.log('api/surveys called!!!!!!!');
+  res.json(surveys);
+  console.log(surveys);
 });
 
 app.get('/api/pictures', (req, res) => {
@@ -85,21 +86,21 @@ app.get('/api/sounds', (req, res) => {
   res.json(sounds);
 });
 
-app.post('/api/form', (req, res) => {
-  const form = req.body.form;
-  form.id = randomId(10);
-  console.log('Adding use:::::::::::', form);
-  forms.push(form);
-  res.json("form addedd");
-    /* if (forms == []){
+app.post('/api/survey', (req, res) => {
+  const survey = req.body.survey;
+  survey.id = randomId(10); //TODO check if already assigned?
+  console.log('Adding use:::::::::::', survey);
+  surveys.push(survey);
+  res.json("survey added");
+    /* if (surveys == []){
         (async () => {
         await storage.init({logging: true, ttl: ttl});
-        forms2 = await storage.getItem('forms');
+        forms2 = await storage.getItem('surveys');
         if (! forms2) {
-        await storage.setItem('forms', forms);
+        await storage.setItem('surveys', surveys);
         }
-        forms = await storage.getItem('forms');
-        console.log('forms is ' + forms);
+        surveys = await storage.getItem('surveys');
+        console.log('surveys is ' + surveys);
         })();
         } */
 });

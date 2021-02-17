@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row">
         <div class="col-md-7 mrgnbtm">
-        <h2>Create Form</h2>
+        <h2>Create Survey</h2>
             <form>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label htmlFor="exampleInputEmail1">First Name</label>
-                        <input type="text" class="form-control" v-model="firstName" name="firstname" id="firstname" aria-describedby="emailHelp" placeholder="First Name" />
+                        <label htmlFor="exampleInputFirstName1">First Name</label>
+                        <input type="text" class="form-control" v-model="firstName" name="firstname" id="firstname" placeholder="First Name" />
                     </div>
                     <div class="form-group col-md-6">
-                        <label htmlFor="exampleInputPassword1">Last Name</label>
+                        <label htmlFor="exampleInputLastName1">Last Name</label>
                         <input type="text" class="form-control" v-model="lastName" name="lastname" id="lastname" placeholder="Last Name" />
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <input type="text" class="form-control" v-model="email" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" />
                     </div>
                 </div>
-                <button type="button" @click='createForm()' class="btn btn-danger">Create</button>
+                <button type="button" @click='createSurvey()' class="btn btn-danger">Create</button>
             </form>
         </div>
     </div>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: 'CreateForm',
+  name: 'CreateSurvey',
   data() {
     return {
       firstName: '',
@@ -38,17 +38,18 @@ export default {
     }
   },
   methods: {
-      createForm() {
+      createSurvey() {
+          console.log("Got to create")
           console.log(this.firstName)
           const payload = {
               firstName: this.firstName,
               lastName: this.lastName,
               email: this.email
           }
-          this.$emit('createForm', payload)
-          this.clearForm();
+          this.$emit('createSurvey', payload)
+          this.clearSurvey();
       },
-      clearForm() {
+      clearSurvey() {
           this.firstName = "";
           this.lastName = "";
           this.email = "";
