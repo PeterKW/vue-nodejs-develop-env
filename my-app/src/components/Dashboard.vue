@@ -52,8 +52,13 @@ export default {
     getAllForms() {
       getAllForms().then(response => {
         console.log(response)
-        this.forms = response
-        this.numberOfForms = this.forms.length
+        if (this.numberOfForms == this.forms.length){
+          this.forms = {};
+          this.numberOfForms = response.length
+        }else{
+          this.forms = response
+          this.numberOfForms = this.forms.length
+        }
       })
     },
     formCreate(data) {
