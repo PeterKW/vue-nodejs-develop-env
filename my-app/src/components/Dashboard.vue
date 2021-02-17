@@ -14,7 +14,7 @@
     <div class="row mrgnbtm">
         <Forms v-if="forms.length > 0" :forms="forms" />
         <Pictures v-if="pictures.length > 0" :pictures="pictures" />  
-        <Sounds :sounds="sounds" />  
+        <Sounds v-if="sounds.length > 0" :sounds="sounds" />  
     </div>
   </div>
 </template>

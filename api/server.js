@@ -79,6 +79,9 @@ app.get('/api/pictures', (req, res) => {
 
 app.get('/api/sounds', (req, res) => {
   console.log('sounds got called!!!!!!!');
+  sounds.forEach( sound => {
+    console.log(sound);
+  })
   res.json(sounds);
 });
 

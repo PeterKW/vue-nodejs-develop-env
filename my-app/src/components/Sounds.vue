@@ -9,7 +9,7 @@
             </tr>
             </thead>
             <tbody>
-              <tr v-for="item in sounds" :key="item">
+              <tr v-for="item in sounds" :key="item.id">
                   <td>{{ item }}</td>
                   <td><div id ="waveform"></div> </td>
               </tr>
@@ -19,12 +19,14 @@
 </template>
 
 <script>
-    var WaveSurfer = require('wavesurfer.js');
-    var address = "";
-    export default {
+ export default {
         name: 'Sounds',
         props: ['sounds']
      }
+/*
+    var WaveSurfer = require('wavesurfer.js');
+    var address = "";
+   
 
      var wavesurfer = WaveSurfer.create({
         container: '#waveform',
@@ -37,5 +39,5 @@
     });
 
     wavesurfer.load({address});
-
+*/
 </script>
