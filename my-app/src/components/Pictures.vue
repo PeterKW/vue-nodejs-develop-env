@@ -11,7 +11,7 @@
             <tbody>
               <tr v-for="item in pictures" :key="item.id">
                   <td>{{ item }}</td>
-                  <td><img :src="item" style="width:20%" :alt=item></td>
+                  <td><img :src="item" style="width:20%" :alt=item ></td>
               </tr>
             </tbody>
         </table>
@@ -24,4 +24,10 @@
         name: 'Pictures',
         props: ['pictures']
      }
+
+    /*function updatePictureChoice(Picture){
+         let el = document.getElementById("pictureChoices");
+         el.value = Picture;    
+         el.dispatchEvent(new Event('pictureChoices'));
+     }*/
 </script>

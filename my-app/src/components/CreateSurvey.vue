@@ -1,23 +1,27 @@
 <template>
   <div class="container">
     <div class="row">
-        <div class="col-md-7 mrgnbtm">
+        <div class="col-md-11 mrgnbtm">
         <h2>Create Survey</h2>
             <form>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label htmlFor="exampleInputFirstName1">First Name</label>
-                        <input type="text" class="form-control" v-model="firstName" name="firstname" id="firstname" placeholder="First Name" />
+                        <label htmlFor="exampleInputTestSound1">Test Sound</label>
+                        <input type="text" class="form-control" v-model="testSound" name="testsound" id="testsound" placeholder="Test Sound" />
                     </div>
                     <div class="form-group col-md-6">
-                        <label htmlFor="exampleInputLastName1">Last Name</label>
-                        <input type="text" class="form-control" v-model="lastName" name="lastname" id="lastname" placeholder="Last Name" />
+                        <label htmlFor="exampleInputPictureSoxel">Picture Soxel</label>
+                        <input type="text" class="form-control" v-model="pictureSoxel" name="picturesoxel" id="picturesoxel" placeholder="Picture Soxel" />
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-12">
-                        <label htmlFor="exampleInputEmail1">Email</label>
-                        <input type="text" class="form-control" v-model="email" name="email" id="email" aria-describedby="emailHelp" placeholder="Email" />
+                    <div class="form-group col-md-6"> <!-- "form-group col-md-12" -->
+                        <label htmlFor="exampleInputPictureChoices">Picture Choices</label>
+                        <input type="text" class="form-control" v-model="pictureChoices" name="pictureChoices" id="pictureChoices" aria-describedby="pictureChoices" placeholder="Picture Choices" />
+                    </div>
+                    <div class="form-group col-md-6"> <!-- "form-group col-md-12" -->
+                        <label htmlFor="exampleInputSelected">Selected</label>
+                        <input type="text" value="test" v-model="selected" class="form-control" name="selected" id="selected" aria-describedby="selected" disabled/>
                     </div>
                 </div>
                 <button type="button" @click='createSurvey()' class="btn btn-danger">Create</button>
@@ -32,27 +36,27 @@ export default {
   name: 'CreateSurvey',
   data() {
     return {
-      firstName: '',
-      lastName: '',
-      email: ''
+      testSound: '',
+      pictureSoxel: '',
+      pictureChoices: ''
     }
   },
   methods: {
       createSurvey() {
           console.log("Got to create")
-          console.log(this.firstName)
+          console.log(this.testSound)
           const payload = {
-              firstName: this.firstName,
-              lastName: this.lastName,
-              email: this.email
+              testSound: this.testSound,
+              pictureSoxel: this.pictureSoxel,
+              pictureChoices: this.pictureChoices
           }
           this.$emit('createSurvey', payload)
           this.clearSurvey();
       },
       clearSurvey() {
-          this.firstName = "";
-          this.lastName = "";
-          this.email = "";
+          this.testSound = "";
+          this.pictureSoxel = "";
+          this.pictureChoices = "";
       }
   }
 }

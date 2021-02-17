@@ -5,17 +5,17 @@
             <thead>
             <tr>
                 <th>Survey Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
+                <th>TestSound</th>
+                <th>PictureSoxel</th>
+                <th>PictureChoices</th>
             </tr>
             </thead>
             <tbody>
               <tr v-for="item in surveys" :key="item.id">
                   <td>{{ item.id }}</td>
-                  <td>{{ item.firstName }}</td>
-                  <td>{{ item.lastName }}</td>
-                  <td>{{ item.email }}</td>
+                  <td>{{ item.testSound }}</td>
+                  <td>{{ item.pictureSoxel }}</td>
+                  <td>{{ item.pictureChoices }}</td>
               </tr>
             </tbody>
         </table>
