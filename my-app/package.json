@@ -12,7 +12,7 @@
     "bootstrap-vue": "^2.16.0",
     "core-js": "^3.6.5",
     "node-persist": "^3.1.0",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-sessionstorage": "^1.0.0",
     "wavesurfer.js": "^4.5.0"
   },
